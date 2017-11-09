@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/hb_restaurants
+    username: root
+    password: hb-be-pass-01
+    
+management:
+  security:
+    enabled: false
+    
+app:
+  paging:
+    size: 10
+    
+server:
+  port: 8080

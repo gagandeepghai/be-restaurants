@@ -1,0 +1,81 @@
+{
+  "categories": [
+    {
+      "name": "Appetizers",
+      "description": "Dish before main course meal.",
+      "items": [
+        {
+          "name": "Vegetable Samosa",
+          "price": 10.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "Triangle flaky pastry stuffed with peas and potatoes & deep fried"
+        },
+        {
+          "name": "Fried Mushrooms",
+          "price": 10.9,
+          "spicelevel": 1,
+          "badges": [
+            "GF",
+            "V"
+          ],
+          "description": "Button mushrooms stuffed with dry fruits, coated with corn flour and crispy fried"
+        },
+        {
+          "name": "Bread Platter",
+          "price": 9.9,
+          "spicelevel": 3,
+          "badges": [
+            "V"
+          ],
+          "description": "Small garlic, kashmiri and cheese naan platter"
+        },
+        {
+          "name": "Chick-pea Fritters",
+          "price": 11.9,
+          "spicelevel": 2,
+          "badges": [
+            "4 pcs"
+          ],
+          "description": "Chick peas, potatoes mixed with spices for perfection"
+        },
+        {
+          "name": "Tandoori Chicken",
+          "price": 12.9,
+          "spicelevel": 3,
+          "badges": [
+            "GF"
+          ],
+          "description": "Chicken Maryland marinated in traditional spices and yoghurt, roasted in the tandoor"
+        },
+        {
+          "name": "Chicken & Cheese Kebab",
+          "price": 13.9,
+          "spicelevel": 2,
+          "badges": [
+            "GF"
+          ],
+          "description": "Tender boneless chicken pieces marinated in cream, yoghurt, spice roasted in the tandoor"
+        },
+        {
+          "name": "Lamb Chops",
+          "price": 15.9,
+          "spicelevel": 2,
+          "badges": [
+            "GF"
+          ],
+          "description": "Succulent tendered lamb chops cooked in clay oven with traditional lucknowi spices"
+        },
+        {
+          "name": "Fish Tikka",
+          "price": 15.9,
+          "spicelevel": 2,
+          "badges": [
+            "GF"
+          ],
+          "description": "Tender boneless fish pieces peppered with carom seeds marinated in ginger & garlic and roasted in the tandoor"
+        }
+      ]
+    }
+  ]
+}

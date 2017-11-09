@@ -1,0 +1,167 @@
+{
+  "categories": [
+    {
+      "name": "Breads",
+      "description": "Tandoori flaky breads.",
+      "items": [
+        {
+          "name": "Plain Naan",
+          "price": 4.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Tandoori Bread."
+        },
+        {
+          "name": "Garlic Naan",
+          "price": 4.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Tandoori Garlic Bread."
+        },
+        {
+          "name": "Butter Naan",
+          "price": 4.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Tandoori Butter Bread."
+        },
+        {
+          "name": "Potato kulcha",
+          "price": 4.5,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Tandoori Bread Stuffed with Potato."
+        },
+        {
+          "name": "Kashmiri naan",
+          "price": 4.5,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Tandoori Bread Stuffed with nut and sultanas."
+        },
+        {
+          "name": "Cheese naan",
+          "price": 4.5,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Tandoori Bread Stuffed with cheese."
+        },
+        {
+          "name": "Tandoori roti",
+          "price": 3.5,
+          "spicelevel": 1,
+          "badges": [
+            "V"
+          ],
+          "description": "Tandoori Wholemeal bread."
+        },
+        {
+          "name": "Parantha",
+          "price": 3.5,
+          "spicelevel": 1,
+          "badges": [
+            "V"
+          ],
+          "description": "Tandoori Flaky Wholemeal bread"
+        }
+      ]
+    },
+    {
+      "name": "Rice",
+      "description": "Exotic Rice dishes.",
+      "items": [
+        {
+          "name": "Steamed Rice",
+          "price": 3.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Steamed Rice."
+        },
+        {
+          "name": "Pea Pulao",
+          "price": 4.90,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Rice tossed with cumin seeds, peas and touch of butter."
+        },
+        {
+          "name": "Veg Biryani",
+          "price": 16.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Steamed Basmati rice slow cooked with aromatic spices and served with raita."
+        },
+        {
+          "name": "Lamb Biryani",
+          "price": 18.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Steamed Basmati rice slow cooked with aromatic spices and served with raita."
+        },
+        {
+          "name": "Chicken Biryani",
+          "price": 17.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Steamed Basmati rice slow cooked with aromatic spices and served with raita."
+        },
+        {
+          "name": "Prawn Biryani",
+          "price": 19.0,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Steamed Basmati rice slow cooked with aromatic spices and served with raita."
+        }
+      ]
+    },
+    {
+      "name": "Sides",
+      "description": "Exotic Rice dishes.",
+      "items": [
+        {
+          "name": "Raita",
+          "price": 2.5,
+          "spicelevel": 1,
+          "badges": []
+        },
+        {
+          "name": "Fresh Vegetable Salad",
+          "price": 4.90,
+          "spicelevel": 1,
+          "badges": []
+        },
+        {
+          "name": "Pickles",
+          "price": 2.50,
+          "spicelevel": 1,
+          "badges": []
+        },
+        {
+          "name": "Papadoms",
+          "price": 3.00,
+          "spicelevel": 1,
+          "badges": []
+        },
+        {
+          "name": "Mango Chutney",
+          "price": 2.50,
+          "spicelevel": 1,
+          "badges": []
+        },
+        {
+          "name": "Kchumber Salad",
+          "price": 2.50,
+          "spicelevel": 1,
+          "badges": []
+        },
+        {
+          "name": "Assortment of Sides",
+          "price": 6.90,
+          "spicelevel": 1,
+          "badges": [],
+          "description": "Raita, kchumber, papadoms (2pcs) and pickle."
+        }
+      ]
+    }
+  ]
+}

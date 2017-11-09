@@ -1,0 +1,131 @@
+{
+  "categories": [
+    {
+      "name": "Main course",
+      "description": "Main meal dishes.",
+      "items": [
+        {
+          "name": "Butter Chicken",
+          "price": 19.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "A classic dish of chicken simmered in a rich, creamy tomato and cashew gravy."
+        },
+        {
+          "name": "Chicken Tikka Masala",
+          "price": 19.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "Tender boneless chicken pieces cooked in a rich & creamy capsicum, tomato and onion gravy"
+        },
+        {
+          "name": "Lamb Roganjosh",
+          "price": 20.9,
+          "spicelevel": 3,
+          "badges": [
+            "V"
+          ],
+          "description": "A classical slow cooked tender Lamb in tomato onion gravy with generous use of aromatic spices"
+        },
+        {
+          "name": "Lamb Madras",
+          "price": 20.9,
+          "spicelevel": 2,
+          "badges": [
+            "V"
+          ],
+          "description": "Lamb cooked in a coconut milk gravy with ground spices"
+        },
+        {
+          "name": "Beef Vindaloo",
+          "price": 20.9,
+          "spicelevel": 3,
+          "badges": [
+            "V"
+          ],
+          "description": "Beef and potatoes cooked in a hot red chilly gravy with herbs"
+        },
+        {
+          "name": "Beef & vegetables",
+          "price": 20.9,
+          "spicelevel": 2,
+          "badges": [
+            "V"
+          ],
+          "description": "Beef cooked with aromatic blend of brown onion and vegetables"
+        },
+        {
+          "name": "Prawn Masala",
+          "price": 21.9,
+          "spicelevel": 2,
+          "badges": [
+            "V"
+          ],
+          "description": "Prawns cooked in whole spices and capsicum gravy"
+        },
+        {
+          "name": "Fish Curry",
+          "price": 21.9,
+          "spicelevel": 2,
+          "badges": [
+            "V"
+          ],
+          "description": "Barramundi done in creamy coconut gravy"
+        },
+        {
+          "name": "Kadhai Paneer",
+          "price": 17.9,
+          "spicelevel": 3,
+          "badges": [],
+          "description": "Fresh paneer pieces tossed in an Indian wok with onion, capsicum & tomato in thick gravy"
+        },
+        {
+          "name": "Palak Paneer",
+          "price": 17.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "Cottage cheese cooked in a spinach with onion tomato sauce garnish with cream"
+        },
+        {
+          "name": "Daal Tadka",
+          "price": 16.9,
+          "spicelevel": 2,
+          "badges": [
+            "V"
+          ],
+          "description": "Yellow lentil cooked with herbs and spices served with a quick dash of fried cumin & garlic"
+        },
+        {
+          "name": "Kofta Curry",
+          "price": 17.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "Delicious cheese and potatoes balls cooked in a creamy tomato sauce"
+        },
+        {
+          "name": "Mix Vegetable",
+          "price": 17.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "Assorted vegetables cooked in a tomato onion base gravy"
+        },
+        {
+          "name": "Mushrooms & Peas Curry",
+          "price": 17.9,
+          "spicelevel": 2,
+          "badges": [
+            "V"
+          ],
+          "description": "Small pieces of mushroom with peas finished with onion tomato gravy"
+        },
+        {
+          "name": "Goan vegetable",
+          "price": 17.9,
+          "spicelevel": 2,
+          "badges": [],
+          "description": "Vegetables cooked in onion & tomato with coconut gravy"
+        }
+      ]
+    }
+  ]
+}
