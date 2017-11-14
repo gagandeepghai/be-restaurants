@@ -17,6 +17,7 @@ import com.hungerbash.restaurants.dto.CreateMenuRequest;
 import com.hungerbash.restaurants.dto.ErrorResponse;
 import com.hungerbash.restaurants.dto.MenuCategoryResponse;
 import com.hungerbash.restaurants.dto.MenuItemsResponse;
+import com.hungerbash.restaurants.dto.SpecialMenuCategoryResponse;
 import com.hungerbash.restaurants.processors.MenuProcessor;
 
 
@@ -47,11 +48,59 @@ public class MenuController {
 		}
     }
     
+    @GetMapping("/categories/special/{id}")
+    public ResponseEntity<?> specialCategories(@PathVariable("id") Long restaurantId) {
+    	try {
+			SpecialMenuCategoryResponse categories = this.processor.getSpecialMenuCategories(restaurantId);
+			return ResponseEntity.ok().body(categories);
+		} catch (BadRequestException ex) {
+			ex.printStackTrace();
+			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+    }
+    
     @GetMapping("/items/{category}/{id}")
     public ResponseEntity<?> itemsForCategory(@PathVariable("category") String category, @PathVariable("id") Long restaurantId) {
     	try {
     		MenuItemsResponse categories = this.processor.getMenuItemsByCategories(restaurantId, category);
 			return ResponseEntity.ok().body(categories);
+		} catch (BadRequestException ex) {
+			ex.printStackTrace();
+			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+    }
+    
+    @GetMapping("/takeaway/{id}")
+    public ResponseEntity<?> takeaway(@PathVariable("id") Long restaurantId) {
+    	try {
+    		Object menu = this.processor.getTakeAwayMenu(restaurantId);
+			return ResponseEntity.ok().body(menu);
+		} catch (BadRequestException ex) {
+			ex.printStackTrace();
+			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+    }
+    
+    @GetMapping("/drinks/{id}")
+    public ResponseEntity<?> drinks(@PathVariable("id") Long restaurantId) {
+    	try {
+    		Object menu = this.processor.getDrinksMenu(restaurantId);
+			return ResponseEntity.ok().body(menu);
 		} catch (BadRequestException ex) {
 			ex.printStackTrace();
 			ErrorResponse response = new ErrorResponse("FAILED", "Fetch Failed." +ex.getMessage());

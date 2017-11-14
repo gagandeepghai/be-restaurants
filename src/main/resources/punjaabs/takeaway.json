@@ -1,0 +1,251 @@
+{
+  "ta": [
+    {
+      "category": "Appetizers",
+      "items": [
+        {
+          "name": "Vegetable Samosa (4 pcs)",
+          "price": 10
+        },
+        {
+          "name": "Fried Mushrooms",
+          "price": 10
+        },
+        {
+          "name": "Bread Platter",
+          "price": 9
+        },
+        {
+          "name": "Chick pea Fritters 4 pcs",
+          "price": 11
+        },
+        {
+          "name": "Tandoori Chicken",
+          "price": 12
+        },
+        {
+          "name": "Chicken & Cheese Kebab",
+          "price": 13
+        },
+        {
+          "name": "Lamb Chops",
+          "price": 15
+        },
+        {
+          "name": "Fish Tikka",
+          "price": 15
+        }
+      ]
+    },
+    {
+      "category": "Main Course",
+      "items": [
+        {
+          "name": "Butter chicken",
+          "price": 19
+        },
+        {
+          "name": "Chicken Tikka Masala",
+          "price": 19
+        },
+        {
+          "name": "Lamb Rogan Josh",
+          "price": 20
+        },
+        {
+          "name": "Lamb Madras",
+          "price": 20
+        },
+        {
+          "name": "Beef Vindaloo",
+          "price": 20
+        },
+        {
+          "name": "Beef Korma",
+          "price": 20
+        },
+        {
+          "name": "Prawn Masala",
+          "price": 21
+        },
+        {
+          "name": "Fish Curry",
+          "price": 21
+        },
+        {
+          "name": "Kadhai Paneer",
+          "price": 17
+        },
+        {
+          "name": "Palak Paneer",
+          "price": 17
+        },
+        {
+          "name": "Daal Tadka",
+          "price": 16
+        },
+        {
+          "name": "Kofta Curry",
+          "price": 17
+        },
+        {
+          "name": "Mix Vegetable",
+          "price": 17
+        },
+        {
+          "name": "Mushrooms & Peas Curry",
+          "price": 17
+        },
+        {
+          "name": "Vegetable Korma",
+          "price": 17
+        }
+      ]
+    },
+    {
+      "category": "Breads",
+      "items": [
+        {
+          "name": "Garlic naan",
+          "price": 3.5
+        },
+        {
+          "name": "Plain naan",
+          "price": 3.5
+        },
+        {
+          "name": "Butter naan",
+          "price": 3.5
+        },
+        {
+          "name": "Potato kulcha",
+          "price": 4
+        },
+        {
+          "name": "Kashmiri naan",
+          "price": 4
+        },
+        {
+          "name": "Cheese naan",
+          "price": 4
+        },
+        {
+          "name": "Tandoori roti",
+          "price": 3.5
+        },
+        {
+          "name": "Parantha (Flaky)",
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "category": "Rice",
+      "items": [
+        {
+          "name": "Steamed Rice",
+          "price": 3
+        },
+        {
+          "name": "Pea pulao",
+          "price": 4.9
+        },
+        {
+          "name": "Veg biryani",
+          "price": 16
+        },
+        {
+          "name": "Chicken biryani",
+          "price": 17
+        },
+        {
+          "name": "Lamb biryani",
+          "price": 18
+        },
+        {
+          "name": "Prawn biryani",
+          "price": 19
+        }
+      ]
+    },
+    {
+      "category": "Sides",
+      "items": [
+        {
+          "name": "Raita",
+          "price": 2.5
+        },
+        {
+          "name": "Fresh vegetable salad",
+          "price": 4.9
+        },
+        {
+          "name": "Pickles",
+          "price": 2.5
+        },
+        {
+          "name": "Papadoms",
+          "price": 3
+        },
+        {
+          "name": "Mango chutney",
+          "price": 2.5
+        },
+        {
+          "name": "Kchumber salad",
+          "price": 2.5
+        },
+        {
+          "name": "Assortment of sides",
+          "price": 6.9
+        }
+      ]
+    },
+    {
+      "category": "Dessert",
+      "items": [
+        {
+          "name": "Gulaab Jaamun",
+          "price": 7
+        },
+        {
+          "name": "Mango kulfi",
+          "price": 7
+        },
+        {
+          "name": "Baileys kulfi",
+          "price": 8
+        }
+      ]
+    },
+    {
+      "category": "Drinks",
+      "items": [
+        {
+          "name": "Mango lassi",
+          "price": 4
+        },
+        {
+          "name": "Coke",
+          "price": 3
+        },
+        {
+          "name": "Lemonade",
+          "price": 3
+        },
+        {
+          "name": "Lemon squash",
+          "price": 3
+        },
+        {
+          "name": "Lemon lime bitters",
+          "price": 3
+        },
+        {
+          "name": "Diet coke",
+          "price": 3
+        }
+      ]
+    }
+  ]
+}

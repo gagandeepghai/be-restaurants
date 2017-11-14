@@ -1,6 +1,8 @@
 package com.hungerbash.restaurants.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -32,4 +34,12 @@ public class Restaurant {
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="restaurant_id")
 	private final Set<MenuCategory> categories = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="restaurant_id")
+	private final Set<SpecialMenuCategory> specialCategoriesMenu = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="restaurant_id")
+	private final List<Reviews> review = new ArrayList<>();
 }

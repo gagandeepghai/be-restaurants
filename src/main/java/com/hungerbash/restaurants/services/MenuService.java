@@ -1,9 +1,15 @@
 package com.hungerbash.restaurants.services;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +17,19 @@ import com.google.gson.Gson;
 import com.hungerbash.restaurants.domain.MenuCategory;
 import com.hungerbash.restaurants.domain.MenuItem;
 import com.hungerbash.restaurants.domain.Restaurant;
+import com.hungerbash.restaurants.domain.SpecialMenuCategory;
 import com.hungerbash.restaurants.dto.CreateCategoryDto;
 import com.hungerbash.restaurants.dto.CreateMenuRequest;
 import com.hungerbash.restaurants.dto.MenuCategoryDto;
 import com.hungerbash.restaurants.dto.MenuCategoryResponse;
 import com.hungerbash.restaurants.dto.MenuItemDto;
 import com.hungerbash.restaurants.dto.MenuItemsResponse;
+import com.hungerbash.restaurants.dto.SpecialMenuCategoryResponse;
 import com.hungerbash.restaurants.exceptions.BadRequestException;
 import com.hungerbash.restaurants.repositories.MenuCategoryRepository;
 import com.hungerbash.restaurants.repositories.MenuRepository;
 import com.hungerbash.restaurants.repositories.RestaurantRepository;
+import com.hungerbash.restaurants.utils.StaticDataFetcher;
 
 @Service
 public class MenuService {
@@ -30,6 +39,9 @@ public class MenuService {
 	
 	@Autowired
 	MenuCategoryRepository menuCategoryRepo;
+	
+	@Autowired
+	StaticDataFetcher staticDataFetcher;
 
 	@Autowired
 	RestaurantRepository restaurantRepo;
@@ -40,7 +52,10 @@ public class MenuService {
 			throw new BadRequestException("Invalid Restaurant Id: " + restaurantId);
 		}
 		MenuCategoryResponse response = new MenuCategoryResponse();
-		restaurant.getCategories().forEach(item -> response.getCategories().add(new MenuCategoryDto(item)));
+		
+		List<MenuCategory> categories = restaurant.getCategories().stream().collect(Collectors.toList());
+		categories.sort((one, two) -> one.getId().compareTo(two.getId()));
+		categories.forEach(item -> response.getCategories().add(new MenuCategoryDto(item)));
 		
 		return response;		
 	}
@@ -104,6 +119,36 @@ public class MenuService {
 		
 		menuItems.forEach(item -> response.getItems().add(new MenuItemDto(item)));
 		return response;
+	}
+
+	public SpecialMenuCategoryResponse getSpecialCategoriesByRestaurantId(Long restaurantId) throws BadRequestException {
+		Restaurant restaurant = restaurantRepo.findById(restaurantId);
+		if (restaurant == null) {
+			throw new BadRequestException("Invalid Restaurant Id: " + restaurantId);
+		}
+		SpecialMenuCategoryResponse response = new SpecialMenuCategoryResponse();
+		
+		List<SpecialMenuCategory> categories = restaurant.getSpecialCategoriesMenu().stream().collect(Collectors.toList());
+		categories.sort((one, two) -> one.getId().compareTo(two.getId()));
+		response.getCategories().addAll(categories);
+		
+		return response;
+	}
+
+	public Object getTakeAwayMenu(Long restaurantId) throws Exception {
+		Restaurant restaurant = restaurantRepo.findById(restaurantId);
+		if (restaurant == null) {
+			throw new BadRequestException("Invalid Restaurant Id: " + restaurantId);
+		}
+		return staticDataFetcher.fetchTakeaway(restaurant.getName());
+	}
+
+	public Object getDrinksMenu(Long restaurantId) throws Exception {
+		Restaurant restaurant = restaurantRepo.findById(restaurantId);
+		if (restaurant == null) {
+			throw new BadRequestException("Invalid Restaurant Id: " + restaurantId);
+		}
+		return staticDataFetcher.fetchDrinksMenu(restaurant.getName());
 	}
 
 }
