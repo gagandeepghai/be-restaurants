@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hungerbash.restaurants.domain.User;
 import com.hungerbash.restaurants.domain.UserSession;
+import com.hungerbash.restaurants.dto.DeviceInfo;
 import com.hungerbash.restaurants.repositories.UserRepository;
 import com.hungerbash.restaurants.repositories.UserSessionRepository;
 
@@ -28,11 +29,11 @@ public class UserService {
 		this.repo.save(user);
 	}
 
-	public String createSession(String deviceId, String facebookHandle, User user) {
+	public String createSession(DeviceInfo deviceInfo, String facebookHandle, User user) {
 		invalidatePreviousSessions(user);
 		
 		String sessionId = UUID.randomUUID().toString();
-		UserSession session = new UserSession(sessionId, deviceId, facebookHandle);
+		UserSession session = new UserSession(sessionId, deviceInfo.getUuid(), deviceInfo.getSerial(), deviceInfo.getManufacturer(), facebookHandle);
 		session.setUser(user);
 		session.setIsActive(true);
 		

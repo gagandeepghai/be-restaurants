@@ -28,6 +28,8 @@ public class UserSession {
 	
 	private final String session;
 	private final String deviceId;
+	private final String deviceSerial;
+	private final String deviceManufacturer;
 	private final String facebookHandle;
 	
 	@Setter(AccessLevel.PUBLIC)

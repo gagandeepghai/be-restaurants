@@ -1,22 +1,27 @@
 package com.hungerbash.restaurants.dto;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
 public class CreateUserRequest {
+	@NotNull(message="Email can not be null.")
 	@JsonProperty("email")
 	private final String email;
 	
 	@JsonProperty("name")
 	private final String name;
 	
+	@NotNull(message="password can not be null.")
 	@JsonProperty("password")
 	private final String password;
 	
-	@JsonProperty("deviceId")
-	private final String deviceId;
+	@NotNull(message="device can not be null.")
+	@JsonProperty("device")
+	private final DeviceInfo deviceInfo;
 	
 	@JsonProperty("facebookHandle")
 	private final String facebookHandle;

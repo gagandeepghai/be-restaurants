@@ -1,16 +1,19 @@
 package com.hungerbash.restaurants.dto;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor(force=true, access=AccessLevel.PUBLIC)
 public class AuthResponse {
+	Boolean valid;
 	String session;
 	Boolean isTemporary;
 	
+	public AuthResponse() {
+		this.valid = false;
+	}
+	
 	public AuthResponse(String session, Boolean temp) {
+		this.valid = true;
 		this.session = session;
 		this.isTemporary = temp;
 	}

@@ -11,6 +11,7 @@ import com.hungerbash.restaurants.dto.ValidateUserRequest;
 import com.hungerbash.restaurants.exceptions.BadRequestException;
 import com.hungerbash.restaurants.services.PasswordService;
 import com.hungerbash.restaurants.services.UserService;
+import com.hungerbash.restaurants.utils.CommunicationUtils;
 
 @Component
 public class UserProcessor {
@@ -20,6 +21,9 @@ public class UserProcessor {
 	
 	@Autowired
 	PasswordService passwordService;
+	
+	@Autowired
+	CommunicationUtils communicationUtils;
 	
 	public String create(CreateUserRequest request) throws Exception {
 		User user = this.userService.findActiveByEmail(request.getEmail());
@@ -32,7 +36,8 @@ public class UserProcessor {
 		this.userService.createUser(user);
 		
 		this.createPassword(request, user);
-		String session = this.userService.createSession(request.getDeviceId(), request.getFacebookHandle(), user);
+		String session = this.userService.createSession(request.getDeviceInfo(), request.getFacebookHandle(), user);
+//		communicationUtils.sendWelcomeEmail(user.getEmail(), request.getName());
 		
 		return session;
 	}
@@ -45,7 +50,7 @@ public class UserProcessor {
 		User user = validateUser(request.getEmail());
 			
 		boolean temp = this.passwordService.validate(user, request.getPassword());
-		String session = this.userService.createSession(request.getDeviceId(), request.getFacebookHandle(), user);
+		String session = this.userService.createSession(request.getDeviceInfo(), request.getFacebookHandle(), user);
 		return new AuthResponse(session, temp);
 	}
 
@@ -60,7 +65,7 @@ public class UserProcessor {
 		User user = validateUser(request.getEmail());
 		
 		this.passwordService.change(user, request.getPassword());
-		String session = this.userService.createSession(request.getDeviceId(), null, user);
+		String session = this.userService.createSession(request.getDeviceInfo(), null, user);
 		return new AuthResponse(session, false);
 	}
 
