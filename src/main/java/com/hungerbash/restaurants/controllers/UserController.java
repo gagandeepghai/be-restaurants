@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hungerbash.restaurants.dto.AuthResponse;
 import com.hungerbash.restaurants.dto.CreateUserRequest;
 import com.hungerbash.restaurants.dto.CreateUserResponse;
+import com.hungerbash.restaurants.dto.DeviceInfo;
 import com.hungerbash.restaurants.dto.PasswordChangeRequest;
+import com.hungerbash.restaurants.dto.UserContext;
 import com.hungerbash.restaurants.dto.ValidateUserRequest;
 import com.hungerbash.restaurants.exceptions.BadRequestException;
 import com.hungerbash.restaurants.exceptions.UnauthorizedException;
@@ -33,9 +35,9 @@ public class UserController {
 	public ResponseEntity<CreateUserResponse> create(@Valid @RequestBody CreateUserRequest request) {
 		CreateUserResponse response = new CreateUserResponse();
 		try {
-			String sessionId = this.processor.create(request);
+			UserContext context = this.processor.create(request);
 			response.setValid(true);
-			response.setSession(sessionId);
+			response.setContext(context);
 			
 			return ResponseEntity.ok().body(response);
 		} catch (BadRequestException ex) {
@@ -55,12 +57,38 @@ public class UserController {
 			AuthResponse response = this.processor.authorize(request);
 			return ResponseEntity.ok().body(response);
 		} catch (BadRequestException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new AuthResponse());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new AuthResponse(null));
 		} catch (UnauthorizedException ex) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse());
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse(null));
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new AuthResponse());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new AuthResponse(null));
+		}
+	}
+	
+	@PostMapping("/session")
+	public ResponseEntity<?> session (@Valid @RequestBody DeviceInfo device) {
+		try {
+			UserContext response = this.processor.getDeviceContext(device);
+			return ResponseEntity.ok().body(response);
+		} catch (UnauthorizedException ex) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+	
+	@PostMapping("/auth/destroy")
+	public ResponseEntity<?> logout (@RequestParam("email") String email) {
+		try {
+			this.processor.processLogout(email);
+			return ResponseEntity.ok().body("done");
+		} catch (BadRequestException ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 		}
 	}
 	

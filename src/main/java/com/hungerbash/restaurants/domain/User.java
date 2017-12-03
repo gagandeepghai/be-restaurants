@@ -23,8 +23,22 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private final String email;
-	private final String name;
 	private final Integer age;
+	
+	@Setter(AccessLevel.PUBLIC)
+	private String name;
+	
+	@Setter(AccessLevel.PUBLIC)
+	private String phone;
+	
+	@Setter(AccessLevel.PUBLIC)
+	private String anniversary;
+	
+	@Setter(AccessLevel.PUBLIC)
+	private String birthday;
+	
+	@Setter(AccessLevel.PUBLIC)
+	private Integer rewards;
 	
 	@Setter(AccessLevel.PUBLIC)
 	private boolean isActive;

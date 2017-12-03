@@ -5,16 +5,16 @@ import lombok.Data;
 @Data
 public class AuthResponse {
 	Boolean valid;
-	String session;
 	Boolean isTemporary;
+	UserContext context;
 	
-	public AuthResponse() {
+	public AuthResponse(UserContext context) {
 		this.valid = false;
 	}
 	
-	public AuthResponse(String session, Boolean temp) {
+	public AuthResponse(Boolean temp, UserContext context) {
 		this.valid = true;
-		this.session = session;
 		this.isTemporary = temp;
+		this.context = context;
 	}
 }

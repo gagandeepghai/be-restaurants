@@ -1,0 +1,20 @@
+[
+  {
+    "code": "NEWUSR15",
+    "percentage": 15,
+    "description": "10% off on dine in order.",
+    "restriction": "Cannot be applied with any other offer. Max discount A$20"
+  },
+  {
+    "code": "WEEKLY10",
+    "percentage": 10,
+    "description": "10% off on dine in order.",
+    "restriction": "Cannot be applied with any other offer. Max discount A$20"
+  },
+  {
+    "code": "MONTHLY10",
+    "percentage": 10,
+    "description": "10% off on dine in order.",
+    "restriction": "Cannot be applied with any other offer. Max discount A$20"
+  }
+]
