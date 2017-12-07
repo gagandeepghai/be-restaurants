@@ -4,6 +4,7 @@ spring:
     hibernate.ddl-auto: update
   datasource:
     url: jdbc:mysql://hb-db.chvywvplppxw.us-west-2.rds.amazonaws.com:3306/hb_restaurants
+#    url: jdbc:mysql://localhost:3306/hb_restaurants
     username: root
     password: hb-be-pass-01
   mail:
@@ -21,3 +22,6 @@ management:
 app:
   paging:
     size: 10
+    
+server:
+  port: ${PORT:8080}
