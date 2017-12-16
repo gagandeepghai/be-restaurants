@@ -24,6 +24,7 @@ public class User {
 	private Long id;
 	private final String email;
 	private final Integer age;
+	private final Boolean isFacebook;
 	
 	@Setter(AccessLevel.PUBLIC)
 	private String name;

@@ -38,12 +38,15 @@ public class UserProcessor {
 			throw new BadRequestException("User Already exist with email: " +request.getEmail());
 		}
 		
-		user = new User(request.getEmail(), null);
+		user = new User(request.getEmail(), null, request.getFacebookHandle() != null);
 		user.setName(request.getName());
 		user.setActive(true);
 		this.userService.createUser(user);
 		
-		this.createPassword(request, user);
+		if(request.getFacebookHandle() == null) {
+			this.createPassword(request, user);
+		}
+		
 		UserContext context = this.userService.createSession(request.getDeviceInfo(), request.getFacebookHandle(), user);
 		communicationUtils.sendWelcomeEmail(user.getEmail(), request.getName());
 		

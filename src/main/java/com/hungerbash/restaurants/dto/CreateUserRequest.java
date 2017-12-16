@@ -15,7 +15,6 @@ public class CreateUserRequest {
 	@JsonProperty("name")
 	private final String name;
 	
-	@NotNull(message="password can not be null.")
 	@JsonProperty("password")
 	private final String password;
 	
@@ -25,4 +24,7 @@ public class CreateUserRequest {
 	
 	@JsonProperty("facebookHandle")
 	private final String facebookHandle;
+	
+	@JsonProperty("photo")
+	private final String pictureUrl;
 }

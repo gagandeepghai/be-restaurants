@@ -65,6 +65,9 @@ public class PasswordService {
 	}
 
 	public void generateTemporary(User user, String email) throws Exception {
+		if(user.getIsFacebook() == true) {
+			return;
+		}
 		deactivateTemporaryPasswords(user);
 		String temporaryPassword = RandomStringUtils.randomAlphanumeric(TEMP_PAS_LEN);
 		System.out.println("Generated: " +temporaryPassword);
