@@ -33,19 +33,17 @@ public class UserProcessor {
 	CommunicationUtils communicationUtils;
 	
 	public UserContext create(CreateUserRequest request) throws Exception {
-		User user = this.userService.findActiveByEmail(request.getEmail());
+		User user = this.userService.findNonFacebookActiveByEmail(request.getEmail());
 		if(user != null) {
 			throw new BadRequestException("User Already exist with email: " +request.getEmail());
 		}
 		
-		user = new User(request.getEmail(), null, request.getFacebookHandle() != null);
+		user = new User(request.getEmail(), null, false);
 		user.setName(request.getName());
 		user.setActive(true);
 		this.userService.createUser(user);
 		
-		if(request.getFacebookHandle() == null) {
-			this.createPassword(request, user);
-		}
+		this.passwordService.create(user, request.getPassword(), false);
 		
 		UserContext context = this.userService.createSession(request.getDeviceInfo(), request.getFacebookHandle(), user);
 		communicationUtils.sendWelcomeEmail(user.getEmail(), request.getName());
@@ -53,10 +51,21 @@ public class UserProcessor {
 		return context;
 	}
 
-	private void createPassword(CreateUserRequest request, User user) throws Exception {
-		this.passwordService.create(user, request.getPassword(), false);
+	public UserContext createFbcontext(CreateUserRequest request) throws Exception {
+		User user = this.userService.findFacebookActiveByEmail(request.getEmail());
+		if(user == null) {
+			user = new User(request.getEmail(), null, true);
+			user.setName(request.getName());
+			user.setActive(true);
+			user.setPhotoUrl(request.getPictureUrl());
+			this.userService.createUser(user);
+		}
+		
+		UserContext context = this.userService.createSession(request.getDeviceInfo(), request.getFacebookHandle(), user);
+		return context;
 	}
 
+	
 	public AuthResponse authorize(ValidateUserRequest request) throws Exception {
 		User user = validateUser(request.getEmail());
 			
@@ -81,7 +90,7 @@ public class UserProcessor {
 	}
 
 	private User validateUser(String email) throws BadRequestException {
-		User user = this.userService.findActiveByEmail(email);
+		User user = this.userService.findNonFacebookActiveByEmail(email);
 		if(user == null) {
 			throw new BadRequestException("User dont exist with email: " +email);
 		}
@@ -111,5 +120,4 @@ public class UserProcessor {
 	public void saveUserProfile(String session, UserProfile profile) {
 		this.userService.saveProfile(session, profile);
 	}
-
 }

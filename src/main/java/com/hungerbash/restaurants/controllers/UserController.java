@@ -51,6 +51,26 @@ public class UserController {
 		}
 	}
 	
+	@PostMapping("/create/fbcontext")
+	public ResponseEntity<CreateUserResponse> createFbcontext(@Valid @RequestBody CreateUserRequest request) {
+		CreateUserResponse response = new CreateUserResponse();
+		try {
+			UserContext context = this.processor.createFbcontext(request);
+			response.setValid(true);
+			response.setContext(context);
+			
+			return ResponseEntity.ok().body(response);
+		} catch (BadRequestException ex) {
+			ex.printStackTrace();
+			response.setMessage(ex.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			response.setMessage(ex.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+	}
+	
 	@PostMapping("/auth")
 	public ResponseEntity<?> authorize (@Valid @RequestBody ValidateUserRequest request) {
 		try {

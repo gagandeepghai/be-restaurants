@@ -32,6 +32,14 @@ public class UserService {
 	@Autowired
 	StaticDataFetcher staticDataFetcher;
 
+	public User findNonFacebookActiveByEmail(String email) {
+		return this.repo.findByEmailAndIsActiveAndIsFacebook(email, true, false);
+	}
+
+	public User findFacebookActiveByEmail(String email) {
+		return this.repo.findByEmailAndIsActiveAndIsFacebook(email, true, true);
+	}
+	
 	public User findActiveByEmail(String email) {
 		return this.repo.findByEmailAndIsActive(email, true);
 	}
@@ -133,4 +141,8 @@ public class UserService {
 		}
 	}
 
+	public void deleteUser(User user) {
+		user.setActive(false);
+		this.repo.save(user);
+	}
 }

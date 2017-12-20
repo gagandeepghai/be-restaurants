@@ -43,4 +43,7 @@ public class User {
 	
 	@Setter(AccessLevel.PUBLIC)
 	private boolean isActive;
+	
+	@Setter(AccessLevel.PUBLIC)
+	private String photoUrl;
 }
