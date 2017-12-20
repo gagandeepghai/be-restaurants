@@ -55,6 +55,7 @@ public class UserController {
 	public ResponseEntity<CreateUserResponse> createFbcontext(@Valid @RequestBody CreateUserRequest request) {
 		CreateUserResponse response = new CreateUserResponse();
 		try {
+			System.out.println("Received: " +request);
 			UserContext context = this.processor.createFbcontext(request);
 			response.setValid(true);
 			response.setContext(context);
@@ -89,6 +90,7 @@ public class UserController {
 	@PostMapping("/session")
 	public ResponseEntity<?> session (@Valid @RequestBody DeviceInfo device) {
 		try {
+			System.out.println("Request: " +device);
 			UserContext response = this.processor.getDeviceContext(device);
 			return ResponseEntity.ok().body(response);
 		} catch (UnauthorizedException ex) {
