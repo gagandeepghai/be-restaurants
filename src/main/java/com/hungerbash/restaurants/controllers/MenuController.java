@@ -46,7 +46,7 @@ public class MenuController {
                     + resourceUrl + " PRC: " +podRoutingCookie);
 	HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
-	return new ResponseEntity<String>("<sitemapindex><sitemap><loc>https://recruiting.adp.com/rm/public/third-party-integration/google/sitemap?s=srccsh&amp;i=001&amp;prc=RMPOD1&amp;si=1</loc><lastmod>2018-02-19T05:01:10-05:00</lastmod></sitemap></sitemapindex>", headers, HttpStatus.OK);
+	return new ResponseEntity<String>("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><sitemap><loc>https://recruiting.adp.com/rm/public/third-party-integration/google/sitemap?s=srccsh&i=001&prc=RMPOD1&si=1</loc><lastmod>2018-02-19T05:01:10-05:00</lastmod></sitemap></sitemapindex>", headers, HttpStatus.OK);
     
     }
 	
