@@ -42,7 +42,7 @@ public class MenuController {
             @RequestParam(name = "prc", required = false) String podRoutingCookie) {
     		System.out.println("testSitemap call for reqId: " + reqId + ", clientId: " + clientId + " and resourceUrl: "
                     + resourceUrl + " PRC: " +podRoutingCookie);
-    		return ResponseEntity.ok("OK");
+    		return ResponseEntity.ok("<sitemapindex><sitemap><loc>https://recruiting.adp.com/rm/public/third-party-integration/google/sitemap?s=srccsh&i=001&prc=RMPOD1&si=1</loc><lastmod>2018-02-19T05:01:10-05:00</lastmod></sitemap></sitemapindex>");
     }
 	
     @GetMapping("/categories/{id}")
