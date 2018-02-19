@@ -20,7 +20,9 @@ import com.hungerbash.restaurants.dto.MenuCategoryResponse;
 import com.hungerbash.restaurants.dto.MenuItemsResponse;
 import com.hungerbash.restaurants.dto.SpecialMenuCategoryResponse;
 import com.hungerbash.restaurants.processors.MenuProcessor;
-
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 @RequestMapping("/v1/menu")
 @RestController
@@ -42,7 +44,10 @@ public class MenuController {
             @RequestParam(name = "prc", required = false) String podRoutingCookie) {
     		System.out.println("testSitemap call for reqId: " + reqId + ", clientId: " + clientId + " and resourceUrl: "
                     + resourceUrl + " PRC: " +podRoutingCookie);
-    		return ResponseEntity.ok("<sitemapindex><sitemap><loc>https://recruiting.adp.com/rm/public/third-party-integration/google/sitemap?s=srccsh&i=001&prc=RMPOD1&si=1</loc><lastmod>2018-02-19T05:01:10-05:00</lastmod></sitemap></sitemapindex>");
+	HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_XML);
+	return new ResponseEntity<String>("<sitemapindex><sitemap><loc>https://recruiting.adp.com/rm/public/third-party-integration/google/sitemap?s=srccsh&i=001&prc=RMPOD1&si=1</loc><lastmod>2018-02-19T05:01:10-05:00</lastmod></sitemap></sitemapindex>", headers, HttpStatus.OK);
+    
     }
 	
     @GetMapping("/categories/{id}")
