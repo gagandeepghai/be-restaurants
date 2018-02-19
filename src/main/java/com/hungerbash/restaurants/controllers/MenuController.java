@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hungerbash.restaurants.dto.CreateMenuRequest;
 import com.hungerbash.restaurants.dto.ErrorResponse;
@@ -30,6 +31,18 @@ public class MenuController {
 	@Autowired
     public MenuController(MenuProcessor processor) {
             this.processor = processor;
+    }
+	
+    
+    
+    @GetMapping("/sm")
+    public ResponseEntity<?> testSitemap(@RequestParam("r") String reqId, 
+            @RequestParam("c") String clientId,
+            @RequestParam("u") String resourceUrl,
+            @RequestParam(name = "prc", required = false) String podRoutingCookie) {
+    		System.out.println("testSitemap call for reqId: " + reqId + ", clientId: " + clientId + " and resourceUrl: "
+                    + resourceUrl + " PRC: " +podRoutingCookie);
+    		return ResponseEntity.ok("OK");
     }
 	
     @GetMapping("/categories/{id}")
