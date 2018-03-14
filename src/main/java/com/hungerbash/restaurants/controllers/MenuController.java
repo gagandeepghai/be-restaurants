@@ -2,6 +2,7 @@ package com.hungerbash.restaurants.controllers;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.BadRequestException;
 
 import org.apache.http.HttpResponse;
@@ -9,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -43,10 +45,11 @@ public class MenuController {
     }
 	
     @GetMapping("/sm")
-    public ResponseEntity<?> testSitemap(@RequestParam("s") String site, 
+    public void testSitemap(@RequestParam("s") String site, 
             @RequestParam("i") String instance,
             @RequestParam(value = "si", required = false) String sitemapId,
-            @RequestParam(name = "prc", required = false) String podRoutingCookie) throws ClientProtocolException, IOException {
+            @RequestParam(name = "prc", required = false) String podRoutingCookie,
+            HttpServletResponse response) throws ClientProtocolException, IOException {
     		System.out.println("Sitemap call for id: " + sitemapId + " site: " + site + " instance: " + instance);
 	
     		String baseUrl = "https://recruiting.adp.com/rm/public/third-party-integration/google/sitemap?s=";
@@ -61,12 +64,12 @@ public class MenuController {
                 .build();
 
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
-        HttpResponse response = httpClientInstance.execute(new HttpGet(baseUrl));
-        System.out.println("Response: " +response.getStatusLine());
-    		
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_XML);
-        return new ResponseEntity<String>(response.getStatusLine().toString(), headers, HttpStatus.OK);
+        HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
+        System.out.println("Response: " +restResponse.getStatusLine());
+    		System.out.println("Received: " +restResponse.getEntity().getContentLength());
+        response.setContentType(ContentType.APPLICATION_XML.toString());
+        response.setStatus(HttpStatus.OK.value());
+        org.apache.commons.io.IOUtils.copy(restResponse.getEntity().getContent(), response.getOutputStream());;
     }
 	
     @GetMapping("/categories/{id}")
