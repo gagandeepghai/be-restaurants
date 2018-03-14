@@ -62,7 +62,9 @@ public class MenuController {
 
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
         HttpResponse response = httpClientInstance.execute(new HttpGet(baseUrl));
-    		HttpHeaders headers = new HttpHeaders();
+        System.out.println("Response: " +response.getStatusLine());
+    		
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
         return new ResponseEntity<String>(response.getStatusLine().toString(), headers, HttpStatus.OK);
     }
