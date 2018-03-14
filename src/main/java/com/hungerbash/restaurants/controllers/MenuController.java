@@ -64,7 +64,7 @@ public class MenuController {
         HttpResponse response = httpClientInstance.execute(new HttpGet(baseUrl));
     		HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
-        return new ResponseEntity<String>(response.getEntity().getContent().toString(), headers, HttpStatus.OK);
+        return new ResponseEntity<String>(response.getStatusLine().toString(), headers, HttpStatus.OK);
     }
 	
     @GetMapping("/categories/{id}")
