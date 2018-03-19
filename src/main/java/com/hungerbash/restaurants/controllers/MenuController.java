@@ -71,6 +71,24 @@ public class MenuController {
         response.setStatus(HttpStatus.OK.value());
         org.apache.commons.io.IOUtils.copy(restResponse.getEntity().getContent(), response.getOutputStream());;
     }
+    
+    @GetMapping("/jp")
+    public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
+            @RequestParam("c") Long clientId,
+            @RequestParam(value = "u") String url) throws ClientProtocolException, IOException {
+    		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + url);
+	
+    		String baseUrl = "https://recruiting.adp.com/rm/public/third-party-integration/google/jobposting?r=";
+    		baseUrl += (reqId + "&c=" + clientId + "&u=" +url);
+    		
+    		System.out.println("Calling URL: " +baseUrl);
+    		
+    		RequestConfig config = RequestConfig.custom().build();
+        HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
+        HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
+        
+        return ResponseEntity.ok().body(restResponse.getEntity().getContent());
+    }
 	
     @GetMapping("/categories/{id}")
     public ResponseEntity<?> categories(@PathVariable("id") Long restaurantId) {
