@@ -1,6 +1,7 @@
 package com.hungerbash.restaurants.controllers;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.BadRequestException;
@@ -78,9 +79,9 @@ public class MenuController {
             @RequestParam("c") Long clientId,
             @RequestParam(value = "u") String url) throws ClientProtocolException, IOException {
     		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + url);
-	
+    		String encoding = "UTF-8";
     		String baseUrl = "https://recruiting.adp.com/rm/public/third-party-integration/google/jobposting?r=";
-    		baseUrl += (reqId + "&c=" + clientId + "&u=" +url);
+    		baseUrl += (reqId + "&c=" + clientId + "&u=" +URLEncoder.encode(url, encoding));
     		
     		System.out.println("Calling URL: " +baseUrl);
     		
@@ -88,7 +89,7 @@ public class MenuController {
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
         HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
         
-        String body = IOUtils.toString(restResponse.getEntity().getContent(), "UTF-8");
+        String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
         
         return ResponseEntity.ok().body(body);
     }
