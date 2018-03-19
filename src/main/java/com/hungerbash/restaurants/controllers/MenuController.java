@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.BadRequestException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -87,7 +88,9 @@ public class MenuController {
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
         HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
         
-        return ResponseEntity.ok().body(restResponse.getEntity().getContent());
+        String body = IOUtils.toString(restResponse.getEntity().getContent(), "UTF-8");
+        
+        return ResponseEntity.ok().body(body);
     }
 	
     @GetMapping("/categories/{id}")
