@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.BadRequestException;
 
@@ -81,7 +82,9 @@ public class MenuController {
             @RequestParam("c") Long clientId,
             @RequestParam(value = "u") String url,
             @RequestParam(value = "red") boolean redirect,
+            HttpServletRequest request, 
             HttpServletResponse response) throws ClientProtocolException, IOException {
+    		System.out.println(request.getHeader("User-Agent"));
     		if(redirect) {
     			response.setStatus(302);
     			response.setHeader("Location", url);
