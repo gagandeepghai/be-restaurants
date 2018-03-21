@@ -83,7 +83,7 @@ public class MenuController {
             @RequestParam(value = "u") String url,
             HttpServletRequest request, 
             HttpServletResponse response) throws ClientProtocolException, IOException {
-    		if(request.getHeader("User-Agent").contains("Googlebot") || request.getHeader("User-Agent").contains("googlebot")) {
+    		if(!request.getHeader("User-Agent").contains("Googlebot") && !request.getHeader("User-Agent").contains("googlebot")) {
     			response.setStatus(302);
     			response.setHeader("Location", url);
     			return null;
