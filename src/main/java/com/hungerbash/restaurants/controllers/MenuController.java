@@ -83,6 +83,7 @@ public class MenuController {
             @RequestParam(value = "red") boolean redirect,
             HttpServletResponse response) throws ClientProtocolException, IOException {
     		if(redirect) {
+    			response.setStatus(302);
     			response.setHeader("Location", url);
     			return null;
     		}
