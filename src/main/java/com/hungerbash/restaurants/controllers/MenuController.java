@@ -1,12 +1,11 @@
 package com.hungerbash.restaurants.controllers;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -17,9 +16,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 //Spring Imports
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,7 +74,7 @@ public class MenuController {
     }
     
     @GetMapping("/jp")
-    public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
+    public Response testJobPosting(@RequestParam("r") String reqId, 
             @RequestParam("c") Long clientId,
             @RequestParam(value = "u") String url) throws ClientProtocolException, IOException {
     		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + url);
@@ -91,12 +88,10 @@ public class MenuController {
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
         HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
         
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
         
-        return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+        return Response.status(Response.Status.OK).entity(body)
+        		.type("application/ld+json").build();
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
