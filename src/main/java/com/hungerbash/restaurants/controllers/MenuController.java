@@ -99,8 +99,7 @@ public class MenuController {
     @GetMapping("/google6a32c23c943668d8.html")
     public void google6a32c23c943668d8(HttpServletResponse response) throws ClientProtocolException, IOException {
     		ClassLoader classLoader = MenuController.class.getClassLoader();
-    		File file = new File(classLoader.getResource("google6a32c23c943668d8.html").getFile());
-    		org.apache.commons.io.IOUtils.copy(new FileInputStream(file), response.getOutputStream());;
+    		org.apache.commons.io.IOUtils.copy(classLoader.getResourceAsStream("google6a32c23c943668d8.html"), response.getOutputStream());;
     }
     
     @GetMapping("/categories/{id}")
