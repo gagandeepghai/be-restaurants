@@ -91,6 +91,9 @@ public class MenuController {
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
         HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
         
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
         
         return ResponseEntity.ok().body(body);
