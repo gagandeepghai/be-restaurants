@@ -1,5 +1,7 @@
 package com.hungerbash.restaurants.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -94,6 +96,13 @@ public class MenuController {
         return ResponseEntity.ok().body(body);
     }
 	
+    @GetMapping("/google6a32c23c943668d8.html")
+    public void google6a32c23c943668d8(HttpServletResponse response) throws ClientProtocolException, IOException {
+    		ClassLoader classLoader = MenuController.class.getClassLoader();
+    		File file = new File(classLoader.getResource("google6a32c23c943668d8.html").getFile());
+    		org.apache.commons.io.IOUtils.copy(new FileInputStream(file), response.getOutputStream());;
+    }
+    
     @GetMapping("/categories/{id}")
     public ResponseEntity<?> categories(@PathVariable("id") Long restaurantId) {
     	try {
