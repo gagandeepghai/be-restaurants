@@ -81,11 +81,9 @@ public class MenuController {
     public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
             @RequestParam("c") Long clientId,
             @RequestParam(value = "u") String url,
-            @RequestParam(value = "red") boolean redirect,
             HttpServletRequest request, 
             HttpServletResponse response) throws ClientProtocolException, IOException {
-    		System.out.println(request.getHeader("User-Agent"));
-    		if(redirect) {
+    		if(request.getHeader("User-Agent").contains("Googlebot") || request.getHeader("User-Agent").contains("googlebot")) {
     			response.setStatus(302);
     			response.setHeader("Location", url);
     			return null;
