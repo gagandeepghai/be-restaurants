@@ -79,7 +79,13 @@ public class MenuController {
     @GetMapping("/jp")
     public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
             @RequestParam("c") Long clientId,
-            @RequestParam(value = "u") String url) throws ClientProtocolException, IOException {
+            @RequestParam(value = "u") String url,
+            @RequestParam(value = "red") boolean redirect,
+            HttpServletResponse response) throws ClientProtocolException, IOException {
+    		if(redirect) {
+    			response.setHeader("Location", url);
+    			return null;
+    		}
     		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + url);
     		String encoding = "UTF-8";
     		String baseUrl = "https://recruiting.adp.com/rm/public/third-party-integration/google/jobposting?r=";
