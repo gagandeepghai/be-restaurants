@@ -96,7 +96,7 @@ public class MenuController {
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
         
-        return ResponseEntity.ok().body(body);
+        return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
