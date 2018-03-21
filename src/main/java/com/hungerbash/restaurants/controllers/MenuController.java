@@ -95,11 +95,7 @@ public class MenuController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-        System.out.println("BODY Before: " +body);
-        body.replaceAll("Context", "context");
-        System.out.println("BODY After: " +body);
-        
-        return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+        return new ResponseEntity<Object>(body.replaceAll("Context", "context"), headers, HttpStatus.OK);
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
