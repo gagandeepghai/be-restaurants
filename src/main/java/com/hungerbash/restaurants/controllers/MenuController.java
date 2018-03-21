@@ -95,7 +95,7 @@ public class MenuController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-        body.replace("Context", "context");
+        body.replaceAll("Context", "context");
         
         return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
     }
