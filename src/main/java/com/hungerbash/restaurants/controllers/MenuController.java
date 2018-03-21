@@ -80,18 +80,22 @@ public class MenuController {
     @GetMapping("/jp")
     public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
             @RequestParam("c") Long clientId,
-            @RequestParam(value = "u") String url,
+            @RequestParam(value = "u") String resourceUrl,
             HttpServletRequest request, 
             HttpServletResponse response) throws ClientProtocolException, IOException {
-    		if(!request.getHeader("User-Agent").contains("Googlebot") && !request.getHeader("User-Agent").contains("googlebot")) {
-    			response.setStatus(302);
-    			response.setHeader("Location", url);
-    			return null;
-    		}
-    		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + url);
+		    	String userAgent = request.getHeader("User-Agent");
+	    	System.out.println("User-Agent: " +userAgent);
+		    	
+	    	if(!userAgent.toLowerCase().contains("googlebot")) {
+		    		System.out.println("Redirecting to career site: " +resourceUrl);
+			response.setStatus(302);
+			response.setHeader("Location", resourceUrl);
+			return null;
+		}
+    		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + resourceUrl);
     		String encoding = "UTF-8";
     		String baseUrl = "https://recruiting.adp.com/rm/public/third-party-integration/google/jobposting?r=";
-    		baseUrl += (reqId + "&c=" + clientId + "&u=" +URLEncoder.encode(url, encoding));
+    		baseUrl += (reqId + "&c=" + clientId + "&u=" +URLEncoder.encode(resourceUrl, encoding));
     		
     		System.out.println("Calling URL: " +baseUrl);
     		
