@@ -86,7 +86,7 @@ public class MenuController {
 		    	String userAgent = request.getHeader("User-Agent");
 	    	System.out.println("User-Agent: " +userAgent);
 		    	
-	    	if(!userAgent.toLowerCase().contains("googlebot")) {
+	    	if(!userAgent.toLowerCase().contains("google")) {
 		    		System.out.println("Redirecting to career site: " +resourceUrl);
 			response.setStatus(302);
 			response.setHeader("Location", resourceUrl);
