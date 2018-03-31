@@ -106,6 +106,9 @@ public class MenuController {
         
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.CONTENT_TYPE, "application/ld+json");
+        headers.set("X-Frame-Options", "DENY");
+        headers.set("X-XSS-Protection", "1; mode=block");
+        headers.set("X-Content-Type-Options", "nosniff");
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
 //        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
