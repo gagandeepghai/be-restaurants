@@ -100,16 +100,16 @@ public class MenuController {
         System.out.println("User Agent: " +userAgent);
         if(userAgent.toLowerCase().contains("googlebot")) {
         		getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
-        		HttpResponse restResponse = httpClientInstance.execute(getRequest);
-        		HttpHeaders headers = new HttpHeaders();
-        		String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-//        		String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
-            return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
-        } else {
-        		HttpResponse restResponse = httpClientInstance.execute(getRequest);
-        		org.apache.commons.io.IOUtils.copy(restResponse.getEntity().getContent(), response.getOutputStream());
-        		return ResponseEntity.ok(null);
-        }
+		}	   
+        
+        HttpResponse restResponse = httpClientInstance.execute(getRequest);
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        
+        String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
+//        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
+        return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
