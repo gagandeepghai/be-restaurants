@@ -97,7 +97,8 @@ public class MenuController {
         HttpGet getRequest = new HttpGet(baseUrl);
         String userAgent = request.getHeader("User-Agent");
     	
-        if(!userAgent.toLowerCase().contains("googlebot")) {
+        System.out.println("User Agent: " +userAgent);
+        if(userAgent.toLowerCase().contains("googlebot")) {
         		getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
 		}
         
