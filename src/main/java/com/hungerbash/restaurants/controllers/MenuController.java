@@ -105,8 +105,8 @@ public class MenuController {
         HttpResponse restResponse = httpClientInstance.execute(getRequest);
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-        String responseStr = "<script type=\"application/ld+json\">" + body + "</script>";
-        return ResponseEntity.ok(responseStr);
+        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
+        return ResponseEntity.ok(body);
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
