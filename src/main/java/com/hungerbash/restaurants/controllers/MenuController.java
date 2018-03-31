@@ -83,15 +83,7 @@ public class MenuController {
             @RequestParam(value = "u") String resourceUrl,
             HttpServletRequest request, 
             HttpServletResponse response) throws ClientProtocolException, IOException {
-		    	String userAgent = request.getHeader("User-Agent");
-	    	System.out.println("User-Agent: " +userAgent);
-		    	
-	    	if(!userAgent.toLowerCase().contains("google")) {
-		    		System.out.println("Redirecting to career site: " +resourceUrl);
-			response.setStatus(302);
-			response.setHeader("Location", resourceUrl);
-			return null;
-		}
+	    	
     		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + resourceUrl);
     		String encoding = "UTF-8";
     		String baseUrl = "https://recruiting.adp.com/rm/public/third-party-integration/google/jobposting?r=";
@@ -101,7 +93,11 @@ public class MenuController {
     		
     		RequestConfig config = RequestConfig.custom().build();
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
-        HttpResponse restResponse = httpClientInstance.execute(new HttpGet(baseUrl));
+        
+        HttpGet getRequest = new HttpGet(baseUrl);
+        getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
+        
+        HttpResponse restResponse = httpClientInstance.execute(getRequest);
         
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
