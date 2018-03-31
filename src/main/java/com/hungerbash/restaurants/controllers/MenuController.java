@@ -78,7 +78,7 @@ public class MenuController {
     }
     
     @GetMapping("/jp")
-    public void testJobPosting(@RequestParam("r") String reqId, 
+    public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
             @RequestParam("c") Long clientId,
             @RequestParam(value = "u") String resourceUrl,
             HttpServletRequest request, 
@@ -91,28 +91,25 @@ public class MenuController {
     		
     		System.out.println("Calling URL: " +baseUrl);
     		
-    		response.setStatus(302);
-		response.setHeader("Location", resourceUrl);
-		return;
-    		
-//    		RequestConfig config = RequestConfig.custom().build();
-//        HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
-//        
-//        HttpGet getRequest = new HttpGet(baseUrl);
-//        String userAgent = request.getHeader("User-Agent");
-//    	
-//        System.out.println("User Agent: " +userAgent);
-//        if(userAgent.toLowerCase().contains("googlebot")) {
-//        		getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
-//		}	   
-//        
-//        HttpResponse restResponse = httpClientInstance.execute(getRequest);
-//        
-//        HttpHeaders headers = new HttpHeaders();
-//        
-//        String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-//        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
-//        return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+    		RequestConfig config = RequestConfig.custom().build();
+        HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
+        
+        HttpGet getRequest = new HttpGet(baseUrl);
+        String userAgent = request.getHeader("User-Agent");
+    	
+        System.out.println("User Agent: " +userAgent);
+        if(userAgent.toLowerCase().contains("googlebot")) {
+        		getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
+        		HttpResponse restResponse = httpClientInstance.execute(getRequest);
+        		HttpHeaders headers = new HttpHeaders();
+        		String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
+//        		String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
+            return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+        } else {
+        		HttpResponse restResponse = httpClientInstance.execute(getRequest);
+        		org.apache.commons.io.IOUtils.copy(restResponse.getEntity().getContent(), response.getOutputStream());
+        		return ResponseEntity.ok(null);
+        }
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
