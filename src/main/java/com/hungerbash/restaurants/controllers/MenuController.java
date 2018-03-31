@@ -95,7 +95,11 @@ public class MenuController {
         HttpClient httpClientInstance = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
         
         HttpGet getRequest = new HttpGet(baseUrl);
-        getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
+        String userAgent = request.getHeader("User-Agent");
+    	
+        if(!userAgent.toLowerCase().contains("googlebot")) {
+        		getRequest.setHeader(HttpHeaders.USER_AGENT, "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
+		}
         
         HttpResponse restResponse = httpClientInstance.execute(getRequest);
         
