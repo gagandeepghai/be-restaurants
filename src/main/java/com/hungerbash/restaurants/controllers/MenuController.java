@@ -106,9 +106,12 @@ public class MenuController {
         
         HttpHeaders headers = new HttpHeaders();
         
-        String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
-        return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+        String res = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
+        String responseStr = res;
+        if(userAgent.toLowerCase().contains("googlebot")) {
+        		responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + res + "</script></body></html>";
+        }
+        return new ResponseEntity<Object>(responseStr, headers, HttpStatus.OK);
     }
 	
     @GetMapping("/google6a32c23c943668d8.html")
