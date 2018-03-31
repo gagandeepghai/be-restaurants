@@ -105,12 +105,10 @@ public class MenuController {
         HttpResponse restResponse = httpClientInstance.execute(getRequest);
         
         HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
         
-        String res = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
-        String responseStr = res;
-        if(userAgent.toLowerCase().contains("googlebot")) {
-        		responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + res + "</script></body></html>";
-        }
+        String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
+        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
         return new ResponseEntity<Object>(responseStr, headers, HttpStatus.OK);
     }
 	
