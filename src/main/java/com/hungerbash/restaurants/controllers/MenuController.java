@@ -111,7 +111,7 @@ public class MenuController {
         HttpResponse restResponse = httpClientInstance.execute(getRequest);
         
         HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.CONTENT_TYPE, "application/ld+json");
+//        headers.set(HttpHeaders.CONTENT_TYPE, "application/ld+json");
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
 //        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
