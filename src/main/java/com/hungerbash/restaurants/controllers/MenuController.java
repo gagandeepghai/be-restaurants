@@ -78,11 +78,17 @@ public class MenuController {
     }
     
     @GetMapping("/jp")
-    public ResponseEntity<?> testJobPosting(@RequestParam("r") String reqId, 
+    public ResponseEntity<?> testJobPosting(
+	    		@RequestParam(value = "d", required = false) Boolean dummy,
+	    		@RequestParam("r") String reqId, 
             @RequestParam("c") Long clientId,
             @RequestParam(value = "u") String resourceUrl,
             HttpServletRequest request, 
             HttpServletResponse response) throws ClientProtocolException, IOException {
+    	
+    		if(Boolean.TRUE.equals(dummy)) {
+    			return ResponseEntity.ok(DummyData.DUMMY);
+    		}
 	    	
     		System.out.println("Sitemap call for c: " + clientId + " r: " + reqId + " u: " + resourceUrl);
     		String encoding = "UTF-8";
@@ -106,9 +112,6 @@ public class MenuController {
         
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.CONTENT_TYPE, "application/ld+json");
-        headers.set("X-Frame-Options", "DENY");
-        headers.set("X-XSS-Protection", "1; mode=block");
-        headers.set("X-Content-Type-Options", "nosniff");
         
         String body = IOUtils.toString(restResponse.getEntity().getContent(), encoding);
 //        String responseStr = "<!DOCTYPE html><html><head></head><body><script type=\"application/ld+json\">" + body + "</script></body></html>";
