@@ -49,6 +49,11 @@ public class MenuController {
             this.processor = processor;
     }
 	
+	@GetMapping("/dummy")
+    public ResponseEntity<?> dummy() {
+		return ResponseEntity.ok().body(DummyData.DUMMY);
+		
+	}
     @GetMapping("/sm")
     public void testSitemap(@RequestParam("s") String site, 
             @RequestParam("i") String instance,
