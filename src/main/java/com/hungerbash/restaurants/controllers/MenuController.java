@@ -65,9 +65,6 @@ public class MenuController {
 		}
 		if (!foundPRCCookie && podRoutingCookie != null) {
 			Cookie cookie = new Cookie(POD_ROUTING_COOKIE_NAME, URLEncoder.encode(podRoutingCookie, "UTF-8"));
-			cookie.setPath("/");
-			cookie.setHttpOnly(true);
-			cookie.setSecure(false);
 			response.addCookie(cookie);
 
 			StringBuilder sb = new StringBuilder();
