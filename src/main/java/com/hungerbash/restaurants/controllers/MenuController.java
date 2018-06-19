@@ -51,8 +51,8 @@ public class MenuController {
 	}
 
 	@GetMapping("/dummy")
-	public void dummy(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(name = "prc", required = false) String podRoutingCookie) throws Exception {
+	public void dummy(@RequestParam(name = "prc", required = false) String podRoutingCookie,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		boolean foundPRCCookie = false;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
