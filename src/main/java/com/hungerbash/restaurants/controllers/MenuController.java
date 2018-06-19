@@ -63,7 +63,7 @@ public class MenuController {
 				}
 			}
 		}
-		if (false && !foundPRCCookie && podRoutingCookie != null) {
+		if (!foundPRCCookie && podRoutingCookie != null) {
 			Cookie cookie = new Cookie(POD_ROUTING_COOKIE_NAME, URLEncoder.encode(podRoutingCookie, "UTF-8"));
 			response.addCookie(cookie);
 			response.setHeader("Refresh", "0; URL=http://restaurants-be.herokuapp.com/v1/menu/dummy?prc=RMPOD1");
