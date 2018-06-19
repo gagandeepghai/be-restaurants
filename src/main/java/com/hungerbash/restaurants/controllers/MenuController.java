@@ -76,7 +76,7 @@ public class MenuController {
 			if (request.getQueryString() != null)
 				sb.append("?").append(request.getQueryString());
 
-			response.setHeader("Refresh", "0; URL=" + sb.toString());
+			response.setHeader("Refresh", "0; URL=https://restaurants-be.herokuapp.com/v1/menu/dummy?prc=RMPOD1");
 			return;
 		}
 		response.setStatus(HttpStatus.OK.value());
