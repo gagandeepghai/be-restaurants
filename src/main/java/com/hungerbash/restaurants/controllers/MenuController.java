@@ -1,5 +1,6 @@
 package com.hungerbash.restaurants.controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -50,8 +51,8 @@ public class MenuController {
 	}
 
 	@GetMapping("/dummy")
-	public ResponseEntity<?> dummy(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(name = "prc", required = false) String podRoutingCookie) throws UnsupportedEncodingException {
+	public void dummy(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name = "prc", required = false) String podRoutingCookie) throws Exception {
 		boolean foundPRCCookie = false;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
@@ -76,9 +77,10 @@ public class MenuController {
 				sb.append("?").append(request.getQueryString());
 
 			response.setHeader("Refresh", "0; URL=" + sb.toString());
-			return ResponseEntity.ok().body("refresh");
+			return;
 		}
-		return ResponseEntity.ok().body(DummyData.DUMMY);
+		response.setStatus(HttpStatus.OK.value());
+		org.apache.commons.io.IOUtils.copy(new ByteArrayInputStream(DummyData.DUMMY.getBytes()), response.getOutputStream());
 	}
 
 	@GetMapping("/sm")
